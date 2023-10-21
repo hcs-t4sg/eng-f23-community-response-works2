@@ -1,6 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
+import { LineChart } from 'recharts/types/chart/LineChart';
+import RechartsLine from './RechartsLine';
+import ChartsBar from './ChartsBar';
+import ChartsLine from './ChartsLine';
 
 // Example function to show how an API might behave
 async function queryExampleAPI(querystring: string) {
@@ -76,6 +80,10 @@ function DataDashboard() {
       <ul>
         {dashboard}
       </ul>
+      {RechartsLine()} 
+      {/* {ChartsBar()}  */}
+      {ChartsLine()}
+    
     </div>
   );
 }
