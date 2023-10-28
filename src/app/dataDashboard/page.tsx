@@ -5,6 +5,7 @@ import { LineChart } from 'recharts/types/chart/LineChart';
 import RechartsLine from './RechartsLine';
 import ChartsBar from './ChartsBar';
 import ChartsLine from './ChartsLine';
+import RechartsScatter from './RechartsScatter';
 
 // Example function to show how an API might behave
 async function queryExampleAPI(querystring: string) {
@@ -81,8 +82,9 @@ function DataDashboard() {
         {dashboard}
       </ul>
       {RechartsLine()} 
+      {RechartsScatter()}
       {/* {ChartsBar()}  */}
-      {ChartsLine()}
+      {/* {ChartsLine()} */}
     
     </div>
   );
