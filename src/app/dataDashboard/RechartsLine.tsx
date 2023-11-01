@@ -1,6 +1,25 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
+const locations = [
+    {
+        latitude: 1,
+        longitude: 2,
+    },
+    {
+        latitude: 3,
+        longitude:4,
+    },
+    {
+        latitude: 5,
+        longitude: 6
+    },
+    {
+        latitude: 7,
+        longitude: 8
+    },
+
+]
 const data = [
     {
         month: 'January',
@@ -108,3 +127,4 @@ export default function RechartsLine() {
         </LineChart>
     );
 }
+
