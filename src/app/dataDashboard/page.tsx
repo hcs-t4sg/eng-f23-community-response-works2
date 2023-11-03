@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
+import json_mock_request from './requests';
+import { HelpRequest } from './api_request/models';
 
 // Example function to show how an API might behave
 async function queryExampleAPI(querystring: string) {
@@ -10,13 +12,7 @@ async function queryExampleAPI(querystring: string) {
   await new Promise(resolve => setTimeout(resolve, 2000));
 
   if (querystring === "crisis-response-data") {
-    const mockData = [
-      { question: 'How many responses did we do this past month?', answer: 'Answer 1' },
-      { question: 'How many responses for each "crisis type"?', answer: 'Answer 2' },
-      { question: 'How many responses for each tag?', answer: 'Answer 3' },
-      { question: 'How many responses by location??', answer: 'Answer 4' },
-      { question: 'How many responses by time of day?', answer: 'Answer 5' },
-    ];
+    const mockData = json_mock_request();
 
     const response = {
       error: null,
@@ -36,10 +32,7 @@ async function queryExampleAPI(querystring: string) {
 function DataDashboard() {
   // Defining a state variable to store the data
   // State variable is initially null, but will update once the API request finishes
-  const [dashboardData, setDashboardData] = useState<{
-    question: string;
-    answer: string;
-  }[] | null>(null);
+  const [dashboardData, setDashboardData] = useState<HelpRequest[] | null>(null);
 
   // As if data was loading but will replace this with actual API requests
   useEffect(() => {
@@ -66,7 +59,7 @@ function DataDashboard() {
 
   const dashboard = dashboardData ? dashboardData.map((item, index) => (
     <li key={index}>
-      <strong>{item.question}:</strong> {item.answer}
+      <strong>{item.id}:</strong> {item.notes}
     </li>
   )) : "Loading..."
 
