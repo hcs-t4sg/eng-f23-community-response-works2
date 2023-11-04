@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import json_mock_request from './requests';
 import { HelpRequest } from './api_request/models';
+import { RadarGraph } from './radial_graph';
+
 
 // Example function to show how an API might behave
 async function queryExampleAPI(querystring: string) {
@@ -69,6 +71,7 @@ function DataDashboard() {
       <ul>
         {dashboard}
       </ul>
+<RadarGraph></RadarGraph>
     </div>
   );
 }

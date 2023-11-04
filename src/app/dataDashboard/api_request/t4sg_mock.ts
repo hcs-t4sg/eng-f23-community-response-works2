@@ -1,6 +1,5 @@
 import { AuthTokens, BasicCredentials, DefaultAttributeCategories, DefaultRoleIds, DefaultRoles, DefaultTagCategories, HelpRequest, Me, OrganizationMetadata, ProtectedUser, RequestStatus, TeamMemberMetadata, User } from './models'
 import { ClientSideFormat, OrgContext, TokenContext } from './api'
-
 /**
  * Mock of what startup would look like
  */
