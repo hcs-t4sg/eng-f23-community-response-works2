@@ -28,7 +28,7 @@ import {
 // TODO: type makes sure param types match but doesn't enforce you pass anything but token
 // changing args to be a single object would fix this and allow for specific apis to take extra params for things
 // but also make sure the original params are required for the call...but would require
-// all api function signatures to take an object of params vs a more natural function call. 
+// all api function signatures to take an object of params vs a more natural function call.
 export type TokenContext = { token: string };
 export type OrgContext = TokenContext & { orgId: string };
 export type RequestContext = OrgContext & { requestId: string }
@@ -44,7 +44,7 @@ type SSAuthenticated<T extends (...args: any) => Promise<any>, User> = (user: Us
 // these check that you have the specified role for a given org
 type SSAuthenticatedWithOrg<T extends (...args: any) => Promise<any>, User> = (orgId: string, user: User, ...args: Rest<Parameters<T>>) => ReturnType<T>
 
-// these check that you're either a dispatcher for the org or 
+// these check that you're either a dispatcher for the org or
 // a responder currently assigned to the request
 type SSAuthenticatedWithRequest<T extends (...args: any) => Promise<any>, Req, User> = (orgId: string, user: User, helpRequest: Req, ...args: Rest<Parameters<T>>) => ReturnType<T>
 
@@ -61,16 +61,16 @@ export type ServerSide<Req, User> = {
 }
 
 
-// need these to handle mapping from client side to serverside types ie. the Map class on the server and 
+// need these to handle mapping from client side to serverside types ie. the Map class on the server and
 // an object on the client
 type MapJson<T = Map<string | number, any>> = T extends Map<any, infer V> ? { [key: string]: V } : never;
 
 export type ClientSideFormat<T> = {
-    [key in keyof T]: T[key] extends Map<any, any> 
+    [key in keyof T]: T[key] extends Map<any, any>
         ? MapJson<T[key]>
         : T[key]
 }
- 
+
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : never;
 
 type ClientSide<T extends (...args: any) => Promise<any>> = (...args: Parameters<T>) => Promise<ClientSideFormat<UnwrapPromise<ReturnType<T>>>>
@@ -109,10 +109,10 @@ export interface IApiClient {
     createNewRole: AuthenticatedWithOrg<(role: MinRole) => Promise<Role>>
     deleteRoles: AuthenticatedWithOrg<(roleIds: string[]) => Promise<{ updatedUserIds: string[], updatedRequestIds: string[] }>>
     addRolesToUser: AuthenticatedWithOrg<(userId: string, roles: string[]) => Promise<ProtectedUser>>
-    
+
     updateAttributes: AuthenticatedWithOrg<(updates: CategorizedItemUpdates) => Promise<OrganizationMetadata>>
     updateTags: AuthenticatedWithOrg<(updates: CategorizedItemUpdates) => Promise<OrganizationMetadata>>
-    
+
 
     broadcastRequest: AuthenticatedWithOrg<(requestId: string, to: string[]) => Promise<void>>
     addUserToOrg: AuthenticatedWithOrg<(userId: string, roles: UserRole[], roleIds: string[], attributes: CategorizedItem[]) => Promise<{ user: ProtectedUser, org: Organization }>>
@@ -126,10 +126,10 @@ export interface IApiClient {
     getRequests: AuthenticatedWithOrg<(requestIds?: string[]) => Promise<HelpRequest[]>>
     getRequest: AuthenticatedWithOrg<(requestId: string) => Promise<HelpRequest>>
     getTeamMembers: AuthenticatedWithOrg<(userIds?: string[]) => Promise<TeamMemberMetadata>>
-    
+
     editMe: AuthenticatedWithOrg<(me: Partial<Me>, protectedUser?: Partial<AdminEditableUser>) => Promise<Me>>
     editUser: AuthenticatedWithOrg<(userId: string, user: Partial<AdminEditableUser>) => Promise<ProtectedUser>>
-    
+
     notifyRespondersAboutRequest: AuthenticatedWithOrg<(requestId: string, to: string[]) => Promise<HelpRequest>>
     ackRequestNotification: AuthenticatedWithOrg<(requestId: string) => Promise<HelpRequest>>
     joinRequest: AuthenticatedWithOrg<(requestId: string, positionId: string) => Promise<HelpRequest>>
@@ -139,7 +139,7 @@ export interface IApiClient {
     confirmRequestToJoinRequest: AuthenticatedWithOrg<(requestId: string, userId: string, positionId: string) => Promise<HelpRequest>>
     declineRequestToJoinRequest: AuthenticatedWithOrg<(requestId: string, userId: string, positionId: string) => Promise<HelpRequest>>
     removeUserFromRequest: AuthenticatedWithOrg<(userId: string, requestId: string, positionId: string) => Promise<HelpRequest>>
-    
+
     editRequest: AuthenticatedWithRequest<(requestUpdates: AtLeast<HelpRequest, 'id'>) => Promise<HelpRequest>>
     editRequestV2: AuthenticatedWithRequest<(requestUpdates: RequestUpdates) => Promise<HelpRequest>>
     sendChatMessage: AuthenticatedWithRequest<(message: string) => Promise<HelpRequest>>
@@ -194,7 +194,7 @@ type ApiRoutes = {
         },
         reportLocation: () => {
             return '/reportLocation'
-        }, 
+        },
         reportPushToken: () => {
             return '/reportPushToken'
         },
@@ -212,7 +212,7 @@ type ApiRoutes = {
         },
         declineRequestToJoinRequest: () => {
             return '/declineRequestToJoinRequest'
-        }, 
+        },
         createOrg: () => {
             return '/createOrg'
         },
@@ -278,7 +278,7 @@ type ApiRoutes = {
         },
         setOnDutyStatus: () => {
             return '/setOnDutyStatus'
-        }, 
+        },
         updateRequestChatReceipt: () => {
             return '/updateRequestChatReceipt'
         },
@@ -376,7 +376,7 @@ type ApiRoutes = {
         reportPushToken: () => {
             return `${this.base}${this.namespaces.users}${this.server.reportPushToken()}`
         },
-        // putting this here because there isn't a great place for it and it doesn't deserve it's own 
+        // putting this here because there isn't a great place for it and it doesn't deserve it's own
         // controller *kanye shrug*
         getSecrets: () => {
             return `${this.base}${this.namespaces.users}${this.server.getSecrets()}`
@@ -401,7 +401,7 @@ type ApiRoutes = {
         ackRequestsToJoinNotification: () => {
             return `${this.base}${this.namespaces.dispatch}${this.server.ackRequestsToJoinNotification()}`
         },
-        
+
 
         // respond
         setOnDutyStatus: () => {

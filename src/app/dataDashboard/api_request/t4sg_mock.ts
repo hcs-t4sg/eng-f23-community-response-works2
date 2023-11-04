@@ -19,9 +19,9 @@ async function boot() {
 }
 
 /**
- * 
+ *
  * Helpers you can call
- * 
+ *
  */
 const fakeRESTCall = () => new Promise((res, rej) => {
   const maxDelay = 3
@@ -54,7 +54,7 @@ async function getRequests(ctx: OrgContext, requestIds?: string[]): Promise<Help
 }
 
 /**
- * These are mocks we actually use for testing that live in our frontend project 
+ * These are mocks we actually use for testing that live in our frontend project
  */
 export function MockRequests(): HelpRequest[] {
   return [
@@ -67,7 +67,7 @@ export function MockRequests(): HelpRequest[] {
       callerContactInfo: '',
       callStartedAt: '',
       callEndedAt: '',
-      dispatcherId: MockUsers()[0].id, 
+      dispatcherId: MockUsers()[0].id,
       type: [],
       positions: [],
       tagHandles: [],
@@ -92,7 +92,7 @@ export function MockRequests(): HelpRequest[] {
       callerContactInfo: '',
       callStartedAt: '',
       callEndedAt: '',
-      dispatcherId: MockUsers()[0].id, 
+      dispatcherId: MockUsers()[0].id,
       type: [],
       positions: [],
       tagHandles: [],
@@ -117,7 +117,7 @@ export function MockRequests(): HelpRequest[] {
       callerContactInfo: '',
       callStartedAt: '',
       callEndedAt: '',
-      dispatcherId: MockUsers()[0].id, 
+      dispatcherId: MockUsers()[0].id,
       type: [],
       positions: [],
       tagHandles: [],
@@ -142,7 +142,7 @@ export function MockRequests(): HelpRequest[] {
       callerContactInfo: '',
       callStartedAt: '',
       callEndedAt: '',
-      dispatcherId: MockUsers()[0].id, 
+      dispatcherId: MockUsers()[0].id,
       type: [],
       positions: [],
       tagHandles: [],
@@ -167,7 +167,7 @@ export function MockRequests(): HelpRequest[] {
       callerContactInfo: '',
       callStartedAt: '',
       callEndedAt: '',
-      dispatcherId: MockUsers()[0].id, 
+      dispatcherId: MockUsers()[0].id,
       type: [],
       positions: [],
       tagHandles: [],
@@ -192,7 +192,7 @@ export function MockRequests(): HelpRequest[] {
       callerContactInfo: '',
       callStartedAt: '',
       callEndedAt: '',
-      dispatcherId: MockUsers()[0].id, 
+      dispatcherId: MockUsers()[0].id,
       type: [],
       positions: [],
       tagHandles: [],
@@ -217,7 +217,7 @@ export function MockRequests(): HelpRequest[] {
       callerContactInfo: '',
       callStartedAt: '',
       callEndedAt: '',
-      dispatcherId: MockUsers()[0].id, 
+      dispatcherId: MockUsers()[0].id,
       type: [],
       positions: [],
       tagHandles: [],
@@ -254,7 +254,7 @@ export function MockOrgMetadata(): OrganizationMetadata {
     }
 }
 
-export function MockUsers(): User[] { 
+export function MockUsers(): User[] {
   return [
     {
       id: '__admin',
@@ -262,7 +262,7 @@ export function MockUsers(): User[] {
       email: 'admin@test.com',
       password: 'pa$$word',
       phone: '5555555555',
-      organizations: { 
+      organizations: {
         [MockOrgMetadata().id]: {
           roleIds: [ DefaultRoleIds.Admin, DefaultRoleIds.Dispatcher ],
           attributes: [
@@ -271,7 +271,7 @@ export function MockUsers(): User[] {
             { categoryId: DefaultAttributeCategories[2].id, itemId: DefaultAttributeCategories[2].attributes[0].id}
           ],
           onDuty: false,
-        } 
+        }
       },
       displayColor: '',
       pronouns: 'they/them',
@@ -284,12 +284,12 @@ export function MockUsers(): User[] {
       email: 'dispatcher@test.com',
       password: 'pa$$word1',
       phone: '555-5556',
-      organizations: { 
+      organizations: {
           [MockOrgMetadata().id]: {
               roleIds: [ DefaultRoleIds.Dispatcher ],
               attributes: [],
               onDuty: false,
-          } 
+          }
       },
       displayColor: '',
       pronouns: 'they/them',
@@ -317,8 +317,8 @@ function toProtected(user: User): ProtectedUser {
   return user
 }
 
-export function MockTeamMemberMetadata(): TeamMemberMetadata { 
-  return { 
+export function MockTeamMemberMetadata(): TeamMemberMetadata {
+  return {
     orgMembers: MockUsers().map(toProtected),
     removedOrgMembers: [{
       id: '__removeduser',
