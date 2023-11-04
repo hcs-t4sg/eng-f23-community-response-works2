@@ -68,6 +68,7 @@ function DataDashboard() {
           </div>
           <div className='border border-teal-300 col-span-2 rounded-md p-2'>
             <h2 className='text-xl'>
+              {/* TODO: Doesn't currently actually check the current month. Will need to fix. */}
               Responses Past Month: {dashboardData ? dashboardData.length : 0}
             </h2>
           </div>
