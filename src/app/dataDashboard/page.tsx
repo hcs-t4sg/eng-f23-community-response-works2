@@ -13,7 +13,7 @@ async function queryExampleAPI(querystring: string) {
   await new Promise(resolve => setTimeout(resolve, 2000));
 
   if (querystring === "crisis-response-data") {
-    const mockData = requests_mock_response();
+    const mockData = await requests_mock_response();
 
     const response = {
       error: null,

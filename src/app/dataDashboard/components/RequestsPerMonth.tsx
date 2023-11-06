@@ -68,8 +68,19 @@ export default function RequestsPerMonth(
     },
   ];
   dashboardData?.forEach((request) => {
+    if (request.createdAt === undefined) {
+      // In case the data doesn't have a createdAt
+      return;
+    }
+
     const dateObject = new Date(request.createdAt);
     const month = dateObject.getMonth();
+    if (month == null) {
+      // In case the data in createdAt isn't correct. This happened with one of the objects
+      console.log(request);
+      return;
+    }
+
     monthlyRequest[month].requests += 1;
   });
 
