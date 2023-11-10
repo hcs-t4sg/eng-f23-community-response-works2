@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { request, requests_mock_response } from './requests';
 import RequestsPerMonth from './components/RequestsPerMonth';
 import RequestsByType from './components/RequestsByType';
-
+import RequestByTimeOfDay from "./components/RequestByTimeOfDay";
 // Example function to show how an API might behave
 async function queryExampleAPI(querystring: string) {
 
@@ -82,6 +82,11 @@ function DataDashboard() {
         {/* Bar/line chart - Div for requests over time */}
         <div className='border border-teal-300 rounded-md row-span-2 col-span-2 p-5'>
           <RequestsByType dashboardData={dashboardData} />
+        </div>
+
+         {/* Radial chart - Div for requests over time */}
+         <div className='border border-teal-300 rounded-md row-span-2 col-span-2 p-5'>
+          <RequestByTimeOfDay dashboardData={dashboardData} />
         </div>
 
         {/* Side bar chart ordered by size - Div for responses by crisis type */}
