@@ -24,12 +24,7 @@ export default function RequestsByType({ dashboardData } : { dashboardData: requ
   let types: {
     category: string;
     quantity: number;
-  }[] = [
-    {
-      category: "ale",
-      quantity: 0,
-    },
-  ];
+  }[] = [];
 
   // This wll loop through all of the requests: Steps 1-4
   dashboardData?.forEach((data) => {
@@ -40,36 +35,45 @@ export default function RequestsByType({ dashboardData } : { dashboardData: requ
     
     // Grbbing all of the types of the requests
     data.type.forEach((type) => {
-      if (types.includes(type.category.slice(0, 3))){
-        types[0].quantity = types[0].quantity + 1 //how do i get the index
+      const wantedType = types.find((element) => element.category == type.slice(0, 3));
+      if (wantedType){
+        wantedType.quantity += 1;
+        // types[0].quantity = types[0].quantity + 1 //how do i get the index
       } else {
-        types.push({category: data.category.slice(0,3), quantity: 1})
+        types.push({category: type.slice(0,3), quantity: 1});
       }
-  
     });
   });
 
   // Step 5-6 here :) loop through types array and order them
-  // 
-    data.type.forEach(types) => {
-      
-    }
-
-    types = types.slice(0,10)
-    
+  types.sort((a, b) => (a.quantity > b.quantity ? -1 : 1));
+  types = types.slice(0, 10);
+  console.log(types);
 
   return (
     // Step 7 here:
     <>
+    <h3 className='w-full text-center'>Requests By Type</h3>
+    <div className='w-full h-72'>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart width={150} height={40} data={dashboardData}>
+        <BarChart 
+            width={150} 
+            height={40} 
+            data={types}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 20,
+            }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="type" />
-          <YAxis />
+          <XAxis dataKey="category" label={{ value: "Crisis Category", position: "insideBottom", offset: -10 }}/>
+          <YAxis label={{ value: "Quantity", angle: -90 }} />
           <Tooltip />
-          <Bar dataKey="type" fill="#8884d8" />
+          <Bar dataKey="quantity" fill="#8884d8" />
         </BarChart>
       </ResponsiveContainer>
+      </div>
     </>
   )
 }
