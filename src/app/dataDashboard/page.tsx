@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { request, requests_mock_response } from './requests';
 import RequestsPerMonth from './components/RequestsPerMonth';
 import RequestsByType from './components/RequestsByType';
+import RechartsScatter from './components/RechartsScatter';
 
 // Example function to show how an API might behave
 async function queryExampleAPI(querystring: string) {
@@ -89,6 +90,7 @@ function DataDashboard() {
         {/* Responses by location will be given here */}
         <div className=''></div>
       </div>
+      {RechartsScatter({dashboardData})}
     </div>
   );
 }
