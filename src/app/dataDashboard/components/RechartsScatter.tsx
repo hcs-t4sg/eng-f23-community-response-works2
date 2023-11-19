@@ -25,7 +25,6 @@ export default function RechartsScatter(
       let latitude = location?.latitude ;
       if (longitude  == undefined || latitude == undefined) {
         // In case the data in createdAt isn't correct. This happened with one of the objects
-        console.log(request);
         return;
       }
       
@@ -41,24 +40,33 @@ export default function RechartsScatter(
     });
     
     // rounding to two decimal places to potentially help see the other points that are currently not visible
-    longitudes_latitudes.forEach((element : {latitude: number, longitude:number}) => {
+    longitudes_latitudes.forEach((element: { latitude: number, longitude: number }) => {
         element.latitude = +(element.latitude.toFixed(2));
         element.longitude = +(element.longitude.toFixed(2));
     });
-    console.log(longitudes_latitudes)
-    return (
-     
+    console.log(longitudes_latitudes);
 
-        <ScatterChart width={700} height={800}>
-            <CartesianGrid />
-            <XAxis type="number" dataKey="latitude" domain={[40, 50]}/>
-            <YAxis type="number" dataKey="longitude"  domain={[-100, 100]} />
-            <Scatter data={longitudes_latitudes} fill="green" />
-         </ScatterChart>
-      
+
+    return (
+        
+      <ScatterChart width={700} height={800}>
+        <CartesianGrid />
+        <XAxis type="number" dataKey="latitude" domain={[40, 50]}/>
+        <YAxis type="number" dataKey="longitude"  domain={[-75, 100]} />
+        <Scatter data={longitudes_latitudes} fill="green" />
+        </ScatterChart>
     );
+    
   }
   
+
+//   <ScatterChart width={700} height={800}>
+//   <CartesianGrid />
+//   <XAxis type="number" dataKey="latitude" domain={[40, 50]}/>
+//   <YAxis type="number" dataKey="longitude"  domain={[100, -75]} />
+//   <Scatter data={longitudes_latitudes} fill="green" />
+// </ScatterChart>
+
 
 
 // export default function RechartsScatter() {
