@@ -2,7 +2,7 @@ import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContaine
 import { request } from "../requests";
 
 export default function RequestsByType({ dashboardData } : { dashboardData: request[] | undefined }) {
-  // 1. Loop through the array of types per request
+    // 1. Loop through the array of types per request
   //   Line 27: data.type.forEach((type) => {
   // 2. Loop through all of the types current stored in the variables `types`
   // 3. Check to see if the type (make sure to slice the string when comparing) 
@@ -48,7 +48,6 @@ export default function RequestsByType({ dashboardData } : { dashboardData: requ
   // Step 5-6 here :) loop through types array and order them
   types.sort((a, b) => (a.quantity > b.quantity ? -1 : 1));
   types = types.slice(0, 10);
-  console.log(types);
 
   return (
     // Step 7 here:
@@ -67,7 +66,7 @@ export default function RequestsByType({ dashboardData } : { dashboardData: requ
               bottom: 20,
             }}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="category" label={{ value: "Crisis Category", position: "insideBottom", offset: -10 }}/>
+          <XAxis dataKey="category" label={{ value: "Request Type Category", position: "insideBottom", offset: -10 }}/>
           <YAxis label={{ value: "Quantity", angle: -90 }} />
           <Tooltip />
           <Bar dataKey="quantity" fill="#8884d8" />
