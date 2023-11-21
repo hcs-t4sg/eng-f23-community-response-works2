@@ -5,6 +5,7 @@ import { request, requests_mock_response } from './requests';
 import RequestsPerMonth from './components/RequestsPerMonth';
 import RequestsByType from './components/RequestsByType';
 import RequestByTimeOfDay from "./components/RequestByTimeOfDay";
+import RechartsScatter from './components/RechartsScatter';
 // Example function to show how an API might behave
 async function queryExampleAPI(querystring: string) {
 
@@ -75,8 +76,13 @@ function DataDashboard() {
         </div>
 
         {/* Number - Div for num responses last most */}
-        <div className='border border-teal-300 col-span-2 row-span-4 rounded-md'>
+        <div className='border border-teal-300 col-span-2 row-span-3 rounded-md p-5'>
           <RequestsPerMonth dashboardData={dashboardData} />
+        </div>
+
+        {/* Radial chart - Div for requests over time */}
+        <div className='border border-teal-300 rounded-md row-span-3 col-span-2 p-5'>
+          <RequestByTimeOfDay dashboardData={dashboardData} />
         </div>
 
         {/* Bar/line chart - Div for requests over time */}
@@ -84,15 +90,12 @@ function DataDashboard() {
           <RequestsByType dashboardData={dashboardData} />
         </div>
 
-         {/* Radial chart - Div for requests over time */}
-         <div className='border border-teal-300 rounded-md row-span-2 col-span-2 p-5'>
-          <RequestByTimeOfDay dashboardData={dashboardData} />
-        </div>
-
         {/* Side bar chart ordered by size - Div for responses by crisis type */}
 
         {/* Responses by location will be given here */}
-        <div className=''></div>
+        <div className='border border-teal-300 rounded-md row-span-2 col-span-4 p-5'>
+          <RechartsScatter dashboardData={dashboardData} />
+        </div>
       </div>
     </div>
   );

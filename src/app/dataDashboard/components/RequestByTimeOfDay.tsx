@@ -21,7 +21,6 @@ ChartJS.register(
   Legend
 );
 
-
 export default function RequestByTimeOfDay(
   {dashboardData}:
   {dashboardData: request[] | undefined}
@@ -30,9 +29,9 @@ export default function RequestByTimeOfDay(
     dashboardData?.forEach(function (request) {
       if (request.createdAt) {
         let hr = new Date(request.createdAt).getHours();
-        data[hr % 24]++;  
+        data[hr % 24]++;
       }
-    }); 
+    });
     const radial_data = {
         labels: [24,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
         datasets: [
@@ -45,8 +44,14 @@ export default function RequestByTimeOfDay(
           },
         ],
       };
-  return <>
-    <h3 className='w-full text-center'>Users Per Time of Day</h3>
-    <Radar data={radial_data} />
-  </>;
+  return (
+    <div className='w-full h-full flex justify-center align-middle'>
+      <div className='max-w-md max-h-md place-self-center'>
+        <h3 className='w-full text-center'>Users Per Time of Day</h3>
+        <div className='w-full h-full'>
+          <Radar data={radial_data} />
+        </div>
+      </div>
+    </div>
+  );
 }
