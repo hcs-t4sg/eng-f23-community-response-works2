@@ -87,7 +87,9 @@ export default function RequestsPerMonth(
   return (
     <>
       <h3 className='w-full text-center'>Responses Per Month</h3>
+
       <div className='w-full h-72'>
+
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             width={500}
