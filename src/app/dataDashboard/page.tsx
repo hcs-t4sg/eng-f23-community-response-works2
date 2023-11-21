@@ -93,7 +93,7 @@ function DataDashboard() {
         {/* Side bar chart ordered by size - Div for responses by crisis type */}
 
         {/* Responses by location will be given here */}
-        <div className='border border-teal-300 rounded-md row-span-2 col-span-4 p-5'>
+        <div className='border border-teal-300 rounded-md row-span-2 col-span-2 md:col-span-4 p-5'>
           <RechartsScatter dashboardData={dashboardData} />
         </div>
       </div>

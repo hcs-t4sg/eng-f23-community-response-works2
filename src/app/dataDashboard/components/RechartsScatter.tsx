@@ -1,4 +1,4 @@
-import { ScatterChart, Scatter, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { ScatterChart, Scatter, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 import { request } from '../requests';
 
 export default function RechartsScatter(
@@ -8,7 +8,6 @@ export default function RechartsScatter(
     let longitudes_latitudes: { latitude: number, longitude: number}[] = [];
 
     dashboardData?.forEach((request) => {
-        console.log(request)
       if (request.location === undefined) {
         // In case the data doesn't have a location
         return;
@@ -38,16 +37,17 @@ export default function RechartsScatter(
     return (
       <div className='flex flex-col justify-center align-middle'>
         <h2 className='text-center'>Locations of Requests</h2>
-        <div className='place-self-center'>
-          <ScatterChart width={500} height={500}>
-            <CartesianGrid />
-            <XAxis type="number" dataKey="latitude" domain={[40, 50]}/>
-            <YAxis type="number" dataKey="longitude"  domain={[-75, 100]} />
-            <Scatter data={longitudes_latitudes} fill="green" />
-          </ScatterChart>
+        <div className='place-self-center w-full h-72'>
+          <ResponsiveContainer width="100%" height="100%">
+            <ScatterChart width={500} height={500}>
+              <CartesianGrid />
+              <XAxis type="number" dataKey="latitude" domain={[40, 50]}/>
+              <YAxis type="number" dataKey="longitude"  domain={[-75, 100]} />
+              <Scatter data={longitudes_latitudes} fill="green" />
+            </ScatterChart>
+          </ResponsiveContainer>
         </div>
       </div>
     );
-
   }
 
