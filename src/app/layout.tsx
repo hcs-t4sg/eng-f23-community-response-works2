@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from './dataDashboard/components/navbar'
 import Footer from './dataDashboard/components/footer'
-import Test from './Test'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
