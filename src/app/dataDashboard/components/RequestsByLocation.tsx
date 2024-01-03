@@ -1,7 +1,7 @@
-import { ScatterChart, Scatter, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { ScatterChart, Scatter, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Label } from 'recharts';
 import { request } from '../requests';
 
-export default function RechartsScatter(
+export default function RequestsByLocation(
     {dashboardData}:
     {dashboardData: request[] | undefined}
     ) {
@@ -39,11 +39,16 @@ export default function RechartsScatter(
         <h2 className='text-center'>Locations of Requests</h2>
         <div className='place-self-center w-full h-72'>
           <ResponsiveContainer width="100%" height="100%">
-            <ScatterChart width={500} height={500}>
+            <ScatterChart width={500} height={500}
+            margin={{ top: 15, right: 30, left: 20, bottom: 30 }}
+            >
+              
               <CartesianGrid />
-              <XAxis type="number" dataKey="latitude" domain={[40, 50]}/>
-              <YAxis type="number" dataKey="longitude"  domain={[-75, 100]} />
-              <Scatter data={longitudes_latitudes} fill="green" />
+              <XAxis type="number" dataKey="latitude" domain={[40, 50]}>
+                <Label value="Latitude" offset={-20} position="insideBottom" />
+                </XAxis>
+              <YAxis label={{ value: 'Longitude', angle: -90, position: 'insideLeft' }} type="number" dataKey="longitude"  domain={[-75, 100]} />
+              <Scatter data={longitudes_latitudes} fill="green"/>
             </ScatterChart>
           </ResponsiveContainer>
         </div>

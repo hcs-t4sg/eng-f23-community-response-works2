@@ -5,7 +5,7 @@ import { request, requests_mock_response } from './requests';
 import RequestsPerMonth from './components/RequestsPerMonth';
 import RequestsByType from './components/RequestsByType';
 import RequestByTimeOfDay from "./components/RequestByTimeOfDay";
-import RechartsScatter from './components/RechartsScatter';
+import RequestsByLocation from './components/RequestsByLocation';
 // Example function to show how an API might behave
 async function queryExampleAPI(querystring: string) {
 
@@ -94,7 +94,7 @@ function DataDashboard() {
 
         {/* Responses by location will be given here */}
         <div className='border border-teal-300 rounded-md row-span-2 col-span-2 md:col-span-4 p-5'>
-          <RechartsScatter dashboardData={dashboardData} />
+          <RequestsByLocation dashboardData={dashboardData} />
         </div>
       </div>
     </div>
